@@ -14,20 +14,19 @@ import java.util.List;
 
 public class PackageManagerHelper {
     private static final String TAG = "PackageManagerHelper";
-    private Context context;
+    private Context mContext;
     private PackageManager packageManager;
     private InstalledAppProperty appProperty;
-    private SharedPreferences sharedPreferences;
     private String deviceId;
 
-    public PackageManagerHelper(Context context, PackageManager packageManager) {
-        this.context = context;
-        this.packageManager = packageManager;
+    public PackageManagerHelper(Context context) {
+        this.mContext = context;
+        packageManager = mContext.getPackageManager();
+
     }
 
     public ArrayList<InstalledAppProperty> getInstalledAppInfo() {
         ArrayList<InstalledAppProperty> appList = new ArrayList<>();
-        packageManager = context.getPackageManager();
         List<ApplicationInfo> applicationInfo = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
 
         for (ApplicationInfo appInfo : applicationInfo) {
